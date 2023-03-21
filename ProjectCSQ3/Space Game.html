@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Starship</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="1200" height="800"></canvas>
+  <script>
+
+    const spaceshipImg = new Image();
+    spaceshipImg.src = "Rocketship.png";
+    const meteorImg = new Image();
+    meteorImg.src = "Meteors.png";
+
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var spaceshipX = 100;
+    var spaceshipY = 100;
+    var meteorCount = 0;
+    var meteors = [];
+    var score = 0;
+    var gameover = false;
+    var backgroundX = 0;
+
+    function drawSpaceship() {
+      ctx.drawImage(spaceshipImg, spaceshipX, spaceshipY, 50, 50);
+    }
+
+    function moveSpaceship(event) {
+      if (gameover) {
+        return;
+      }
+      switch(event.keyCode) {
+        case 37:
+          spaceshipX -= 10;
+          break;
+        case 38:
+          spaceshipY -= 10;
+          break;
+        case 39:
+          spaceshipX += 10;
+          break;
+        case 40:
+          spaceshipY += 10;
+          break;
+      }
+
+      if (spaceshipX < 0) {
+        spaceshipX = 0;
+      }
+      if (spaceshipX > canvas.width - 50) {
+        spaceshipX = canvas.width - 50;
+      }
+      if (spaceshipY < 0) {
+        spaceshipY = 0;
+      }
+      if (spaceshipY > canvas.height - 50) {
+        spaceshipY = canvas.height - 50;
+      }
+    }
+
+    function drawBackground() {
+      var img = new Image();
+      img.src = "spacebackground.png";
+      ctx.drawImage(img, backgroundX, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, backgroundX + canvas.width, 0, canvas.width, canvas.height);
+      backgroundX -= 1;
+      if (backgroundX < -canvas.width) {
+        backgroundX = 0;
+      }
+    }
+
+    function drawMeteor() {
+      var meteor = {
+        x: Math.random() * canvas.width + canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 60 + 40,
+        speed: Math.random() * 10 + 4
+      };
+      meteors.push(meteor);
+    }
+
+
+    function drawMeteors() {
+      for (let i = 0; i < meteors.length; i++) {
+        ctx.drawImage(meteorImg, meteors[i].x, meteors[i].y, meteors[i].size, meteors[i].size);
+        meteors[i].x -= meteors[i].speed;
+
+        if (meteors[i].x + meteors[i].size > spaceshipX &&
+            meteors[i].x < spaceshipX + 50 &&
+            meteors[i].y < spaceshipY + 50 &&
+            meteors[i].y + meteors[i].size > spaceshipY) {
+          gameover = true;
+        }
+
+
+        if (meteors[i].x < -meteors[i].size) {
+        meteors.splice(i, 1);
+        meteorCount--;
+        score++;
+        }
+        }
+        }
+
+    function drawScore() {
+    ctx.font = "24px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Score: " + score, canvas.width - 150, 50);
+    }
+
+    function drawGameOver() {
+    ctx.font = "48px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText("GAME OVER", canvas.width/2 - 150, canvas.height/2 - 50);
+    ctx.font = "24px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Score: " + score, canvas.width/2 - 50, canvas.height/2 + 20);
+    }
+
+    function gameLoop() {
+    if (!gameover) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBackground();
+        drawSpaceship();
+        if (meteorCount < 10) {
+        drawMeteor();
+        meteorCount++;
+        }
+        drawMeteors();
+        drawScore();
+    } else {
+        drawGameOver();
+    }
+    }
+
+    setInterval(gameLoop, 30);
+
+    window.addEventListener("keydown", moveSpaceship, false);
+</script>
+</body>
+</html>
+
