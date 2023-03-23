@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<title>Starship</title>
+
+<meta charset="utf-8">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+ <style>
+        body {
+          background-image: url(https://i.imgur.com/4gi8MPr.png);
+          background-repeat: no-repeat;
+          background-attachment: fixed; 
+          background-size: cover;
+          width: 100%;
+     }
+img{
+     width:100%;
+}
+     .navigationbar{
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-bottom: 0;
+          position: sticky;
+          z-index: 1;
+          justify-content: center;
+          display:flex;
+          background-color: rgb(117, 90, 216);
+          color:rgb(253, 250, 250);
+          width: 100%;
+     }
+     .navigationbarlinks ul{
+          margin:0;
+          display: flex;
+     }
+     .navigationbarlinks li{
+          list-style:none;
+     }
+     .navigationbarlinks li a{
+          font-family: 'Poppins';
+          color:rgb(243, 226, 226);
+          padding:2rem;
+          text-decoration: none;
+          display:block;
+     }
+     .navigationbarlinks li:hover{
+          background-color: rgb(94, 3, 179);
+          border-radius:12px;
+     }
+     h1,h2{
+          margin-top: 0px;
+          color:white;
+          font-family: 'Poppins';
+       }
+      p{
+          color:white;
+          font-family: 'Roboto', sans-serif;
+     }
+ </style>
+</head>
+<body>
+     <nav class="navigationbar">
+          <div class="navigationbarlinks">
+               <ul>
+                   <li><a href="index.html">Homepage</a></li>
+                   <li><a href="gameproper.html">Start</a></li>
+                   <li><a href="about.html">About</a></li>    
+               </ul>
+           </div>
+          </nav>
+          <div class="container-fluid">
+          <div class="row">
+          <div class="col-sm-6">
+          <img src="gamescreenshot.jpg" alt="game screenshot">
+          </div>
+             <div class="col-sm-6" style="background-color: rgb(61, 61, 61);">
+               <h1>Tutorial and Game Mechanics</h1>
+               <h2>Controls:</h2>
+                    <p>tap ← to move to the left by 1 pixel</p>
+                   <p> hold ← to move rapidly to the left</p>
+                    <p>tap → to move to the right by 1 pixel</p>
+                    <p>hold → to move rapidly to the right</p>
+                    <p>tap ↑ to move upwards by 1 pixel</p>
+                    <p>hold ↑ to rapidly move upward</p>
+                    <p>tap ↓ to move  downwards by 1 pixel</p>
+                    <p>hold ↓ to rapidly move upwards</p>
+               <h2>Mechanics:</h2>
+               <p>Use the controls to dodge the incoming meteors.
+                    Some meteors are faster and larger than others.
+                    Score goes up every time a meteor goes off the screen.
+                    The game ends when a meteor hits the spaceship.
+                    Hitboxes are sometimes larger than what you actually see.</p>
+             </div>
+          </div>
+     </div>
+</body>
+</html>
